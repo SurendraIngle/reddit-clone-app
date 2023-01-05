@@ -19,7 +19,7 @@ public class CommentService {
         Optional<Post> postOptional = postRepository.findById(Long.valueOf(Integer.parseInt(postId)));
         if(postOptional.isPresent()){
             Post post = postOptional.get();
-            comment.setPost(post);
+//            comment.setPost(post);
             commentRepository.save(comment);
         }
     }
@@ -34,7 +34,7 @@ public class CommentService {
     public void deleteComment(String commentId){
         Comment comment = getComment(commentId);
         if(comment!=null){
-            comment.setPost(null);
+//            comment.setPost(null);
             commentRepository.delete(comment);
         }
     }

@@ -30,5 +30,6 @@ public class User {
     private Timestamp createdAt;
     @OneToMany(mappedBy = "user")
     List<Comment> comments;
+
     private boolean enabled;
 }

@@ -25,17 +25,20 @@ public class SubredditController {
         subredditService.createSubreddit(subreddit,subredditId);
        return "redirect:/home/";
     }
-    @GetMapping("/showSubreddit")
-    public List<Subreddit> showSubreddit(){
-       return subredditService.findAll();
-
+    @CrossOrigin
+    @GetMapping("/home/showSubreddit")
+    public String showSubreddit(Model model){
+       List<Subreddit> subredditList= subredditService.findAll();
+       System.out.println(subredditList);
+       model.addAttribute("allSubreddit",subredditList);
+       return "showsubreddit";
     }
-    @GetMapping("/deleteSubreddit")
+    @GetMapping("/home/deleteSubreddit")
     public String deleteSubreddit(@RequestParam("subredditId") Long subredditId){
         subredditService.deleteSubredditById(subredditId);
-        return "";
+        return "showsubreddit";
     }
-    @GetMapping("/showSubredditId")
+    @GetMapping("/home/showSubredditId")
     public Subreddit showSubredditById(@RequestParam("subredditId")Long subredditId){
         Subreddit subreddit =subredditService.findById(subredditId);
         return  subreddit;

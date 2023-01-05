@@ -26,9 +26,9 @@ public class Post {
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
     private Long id;
-    @NotBlank(message = "Title cannot be empty or Null")
+//    @NotBlank(message = "Title cannot be empty or Null")
     private String title;
-    @Nullable
+//    @Nullable
     @Lob
     private String content;
     private Integer voteCount = 0;
@@ -44,7 +44,7 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = LAZY,cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "subreddit_id")
     private Subreddit subreddit;
 }
