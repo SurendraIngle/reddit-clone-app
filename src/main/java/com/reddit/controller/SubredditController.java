@@ -24,5 +24,15 @@ public class SubredditController {
        return subredditService.findAll();
 
     }
+    @GetMapping("/deleteSubreddit")
+    public String deleteSubreddit(@RequestParam("subredditId") Long subredditId){
+        subredditService.deleteSubredditById(subredditId);
+        return "";
+    }
+    @GetMapping("/showSubredditId")
+    public Subreddit showSubredditById(@RequestParam("subredditId")Long subredditId){
+        Subreddit subreddit =subredditService.findById(subredditId);
+        return  subreddit;
+    }
 
 }
