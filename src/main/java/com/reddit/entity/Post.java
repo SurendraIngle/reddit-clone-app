@@ -38,13 +38,12 @@ public class Post {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private Timestamp updatedDate;
-
-
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
-    @ManyToOne(fetch = LAZY,cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "subreddit_id")
     private Subreddit subreddit;
+    @OneToMany(fetch = LAZY,mappedBy = "user")
+    private List<Comment> comments;
 }
