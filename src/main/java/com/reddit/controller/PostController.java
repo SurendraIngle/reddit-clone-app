@@ -1,5 +1,6 @@
 package com.reddit.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.reddit.entity.Comment;
 import com.reddit.entity.Post;
@@ -41,13 +44,14 @@ public class PostController {
         return "new-post";
     }
 
-    @RequestMapping("/savepost")
+    @PostMapping("/savepost")
     public String saveOrUpdatePost(@RequestParam("title") String title,
                                    @RequestParam("content") String content,
                                    @RequestParam("subreddit") String subreddit,
-                                   @RequestParam("username") String username){
-
-        this.postService.addPost(title,content,subreddit,username);
+                                   @RequestParam("fileprofile") MultipartFile file,
+                                   @RequestParam("username") String username) throws IOException{
+       
+        this.postService.addPost(title,content,subreddit,username,file);
         return "redirect:/posts/";
     }
 
@@ -70,16 +74,18 @@ public class PostController {
         return "viewPost";
     }
 
-    @GetMapping("/upvote/{viewId}")
-    public String upVote(@PathVariable("viewId") Long id){
-        this.postService.upVote(id);
-     return "redirect:/posts/";
+    @GetMapping("/upvote")
+    public String upVote(@RequestParam("postId") Long postId, @RequestParam("username") String username ){
+        System.out.println(">> upvoting : " + postId + " " + username);
+        this.postService.upvotePost(postId, username); 
+        return "redirect:/posts/";
     }
 
-    @GetMapping("/downvote/{viewId}")
-    public String downVote(@PathVariable("viewId") Long id){
-        this.postService.downVote(id);
-     return "redirect:/posts/";
+    @GetMapping("/downvote")
+    public String downVote(@RequestParam("postId") Long postId, @RequestParam("username") String username){
+        System.out.println(">> downvoting : " + postId + " " + username);
+        this.postService.downvotePost(postId, username);
+        return "redirect:/posts/";
     }
   
 
@@ -118,5 +124,4 @@ public String updatePost(@RequestParam("id") Long postId,
    return "viewPost";
 }
    
-
 }
