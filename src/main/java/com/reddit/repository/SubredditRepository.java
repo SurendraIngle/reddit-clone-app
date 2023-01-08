@@ -15,6 +15,6 @@ public interface SubredditRepository extends JpaRepository<Subreddit,Long> {
     @Query(value="select * from subreddit where name like :c",nativeQuery = true)
     public Subreddit findSubredditByName(@Param("c") String subredditName);
 
-    
+
 
 }

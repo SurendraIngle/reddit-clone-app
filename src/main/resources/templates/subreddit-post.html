@@ -169,9 +169,10 @@ Filter Posts<a th:href="@{/home/topPosts}" style="margin-right: 20px; margin-lef
 <div class="float-container">
    
     <div class="float-child green" th:each=" post: ${posts}">
-
-        
-      <h3 th:text="${post.title}"></h3>
+        <div th:if="${post.image}!=null">
+            <img  th:src="@{'/img/'+${post.image}}" id="image"/>
+        </div>
+        <h3 th:text="${post.title}"></h3>
       <h3 th:text="u+'/  '+${post.user.username}"></h3>
       <h3 th:text="r+'/  '+${post.subreddit.name}"></h3>
        <h4 th:text="${#strings.substring(post.content,0,60)}"></h4>
@@ -197,7 +198,7 @@ Filter Posts<a th:href="@{/home/topPosts}" style="margin-right: 20px; margin-lef
     <span th:each="subreddit :${thesubreddit}" style="width:100px;">
         <tr >
             <td th:text="${subreddit.name}"></td>
-             <td th:text="${subreddit.description}"></td>
+             <td th:text="${subreddit.description}" style="col:3;"></td>
              <td th:text="${subreddit.createdDate}"></td>
         </tr>
     </span>

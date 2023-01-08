@@ -76,5 +76,13 @@ public class SubredditController {
         model.addAttribute("thesubreddit",subreddit);
         return "subreddit-post";
     }
+    @GetMapping("/hi")
+    public String topPostFilter(){
+       String subredditName="BangBoys";
+       Long subredditId=(long)1;
+        List<Post> postList= subredditService.top10post(subredditId);
+        System.out.println(postList);
+        return "";
+    }
 
 }
