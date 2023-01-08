@@ -92,8 +92,7 @@ public class SubredditController {
     @GetMapping("/hi")
     public String topPostFilter(){
        String subredditName="BangBoys";
-       Long subredditId=(long)1;
-        List<Post> postList= subredditService.top10post(subredditId);
+        List<Post> postList= subredditService.top10post(subredditName);
         System.out.println(postList);
         return "";
     }

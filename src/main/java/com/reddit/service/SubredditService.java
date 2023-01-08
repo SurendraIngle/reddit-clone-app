@@ -69,7 +69,9 @@ public class SubredditService {
     } 
 
 
-    public List<Post> top10post(Long subredditId) {
-        return postRepository.top10Post(subredditId);
+    public List<Post> top10post(String subredditName) {
+        System.out.println("subr88e38e3e3e3e3e3e3e3escdc");
+        List<Post> postList=postRepository.findPostBySubredditName(subredditName);
+        return postList;
     }
 }
