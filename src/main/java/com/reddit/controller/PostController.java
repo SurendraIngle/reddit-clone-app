@@ -118,9 +118,6 @@ public class PostController {
     model.addAttribute("subreddits", subreddits);
     return "update-post";
    }
-
-
-
    @GetMapping("/updatepost")
 public String updatePost(@RequestParam("id") Long postId,
 @RequestParam("title") String title,

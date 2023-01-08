@@ -94,13 +94,6 @@ public class SubredditController {
         System.out.println(">> subreddit name : " + subreddit.getName());
         return "subreddit-post";
     }
-    @GetMapping("/hi")
-    public String topPostFilter(){
-       String subredditName="BangBoys";
-        List<Post> postList= subredditService.top10post(subredditName);
-        System.out.println(postList);
-        return "";
-    }
 
 @GetMapping("/newPosts/{subredditname}")
    public String newPosts(@PathVariable("subredditname") String name,Model model){
