@@ -168,7 +168,8 @@ width: 20%;
         margin-left: 10%;
     }
     #image{
-    height: 400px;
+       height: 200px;
+    width: 300px;
 }
 
 </style>
@@ -244,24 +245,24 @@ width: 20%;
 
 <div class="float-container">
     <div class="float-child green" th:each=" post: ${posts}">
-        <div th:if="${post.image}!=null">
-            <img th:src="@{'/img/'+${post.image}}" id="image"/>
-        </div>
-        <h3 th:text="${post.title}"></h3>
-        <h3 th:text="u+'/  '+${post.user.username}"></h3>
-        <h3 th:text="r+'/  '+${post.subreddit.name}"></h3>
-        <h4 th:text="${#strings.substring(post.content,0,60)}"></h4>
-        <div class="float-child" th:each=" post: ${posts}">
-            <h3 th:text="${post.title}"></h3>
-            <h3 th:text="u+'/  '+${post.user.username}"></h3>
-            <h3 th:text="r+'/  '+${post.subreddit.name}"></h3>
-            <div th:if="${#strings.length(post.content) > 60}">
-                <h4 th:text="${#strings.substring(post.content,0,60)}"></h4>
-            </div>
-            <div th:unless="${#strings.length(post.content) > 60}">
-                <h4 th:text="${post.content}"></h4>
-            </div>
-            <h5 th:text="${post.createdDate}"></h5>
+<!--        <div th:if="${post.image}!=null">-->
+<!--            <img th:src="@{'/img/'+${post.image}}" id="image"/>-->
+<!--        </div>-->
+<!--        <h3 th:text="${post.title}"></h3>-->
+<!--        <h3 th:text="u+'/  '+${post.user.username}"></h3>-->
+<!--        <h3 th:text="r+'/  '+${post.subreddit.name}"></h3>-->
+<!--        <h4 th:text="${#strings.substring(post.content,0,60)}"></h4>-->
+<!--        <div class="float-child" th:each=" post: ${posts}">-->
+<!--            <h3 th:text="${post.title}"></h3>-->
+<!--            <h3 th:text="u+'/  '+${post.user.username}"></h3>-->
+<!--            <h3 th:text="r+'/  '+${post.subreddit.name}"></h3>-->
+<!--            <div th:if="${#strings.length(post.content) > 60}">-->
+<!--                <h4 th:text="${#strings.substring(post.content,0,60)}"></h4>-->
+<!--            </div>-->
+<!--            <div th:unless="${#strings.length(post.content) > 60}">-->
+<!--                <h4 th:text="${post.content}"></h4>-->
+<!--            </div>-->
+<!--            <h5 th:text="${post.createdDate}"></h5>-->
             <h3 th:text="${post.title}"></h3>
             posted by <a th:href="@{/user/{username}(username=${post.user.username})}"><span
                 th:text="u+'/  '+${post.user.username}"></span></a>
@@ -274,9 +275,9 @@ width: 20%;
             <div th:unless="${#strings.length(post.content) > 60}">
                 <h4 th:text="${post.content}"></h4>
             </div>
-<!--            <div th:if="${post.image}!=null">-->
-<!--                <img th:src="@{'/img/'+${post.image}}" id="image"/>-->
-<!--            </div>-->
+            <div th:if="${post.image}!=null">
+                <img th:src="@{'/img/'+${post.image}}" id="image" style="width:200px;"/>
+            </div>
             <br>
             <td>
                 <a th:href="@{/posts/view/{viewId}(viewId=${post.id})}" id="view">View Post</a>
@@ -302,8 +303,7 @@ width: 20%;
             </div>
 
         </div>
-
-    </div>
+</div>
     <div id="subredditdis">
         <h3>About Community</h3>
         <span th:each="subreddit :${thesubreddit}">
@@ -316,6 +316,5 @@ width: 20%;
         </tr>
     </span>
     </div>
-</div>
 </body>
 </html>
