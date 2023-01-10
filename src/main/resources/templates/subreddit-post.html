@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Subreddit</title>
     <style>
    .container ul{
     overflow: auto;
@@ -169,6 +169,15 @@ width: 20%;
     #image{
     height: 400px;
 }
+#profile{
+display:flex;
+    flex-direction: column;
+    align-items: center;
+margin-left=300px
+}
+#subredditimage{
+height:200px;
+}
 </style>
 <body>
 <nav class="container">
@@ -201,7 +210,11 @@ width: 20%;
         </li>
     </ul>
 </nav>
-
+<div id="profile">
+    <div th:if="${thesubreddit.image}!=null">
+        <img  th:src="@{'/img/'+${thesubreddit.image}}" id="subredditimage"/>
+    </div>
+</div>
 <div id="filter">
 
     Filter Posts<a th:href="@{/subreddit/topPosts/{subredditname}(subredditname=${thesubreddit.name})}" style="margin-right: 20px; margin-left: 20px; text-decoration: none;" >Top Post</a>
